@@ -14,17 +14,17 @@ export class RolesGuard implements CanActivate {
     ]);
 
     if (!requiredRoles) {
-      return true; // No role required, allow access
+      return true; 
     }
 
     const request = context.switchToHttp().getRequest();
-    const user = request.user; // Must be set by AuthGuard
+    const user = request.user; 
 
     if (!user || !user.role) {
       throw new ForbiddenException('Access denied: No role assigned');
     }
 
-    // Check if user has at least one required role
+    
     if (!requiredRoles.includes(user.role)) {
       throw new ForbiddenException('Access denied: Insufficient role');
     }

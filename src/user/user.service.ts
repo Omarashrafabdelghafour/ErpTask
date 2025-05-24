@@ -56,6 +56,6 @@ return {
          }
         }
   async all() {
-    return await this.userModel.find().select('-password'); // Exclude password from the response
+    return await this.userModel.find().select('-password'); 
   } 
 }

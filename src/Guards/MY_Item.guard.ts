@@ -16,7 +16,7 @@ export class MY_Item implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
 
-    // Extract token from Authorization header
+    
     const authHeader = request.headers.authorization;
     if (!authHeader) {
       return false;
@@ -26,23 +26,23 @@ export class MY_Item implements CanActivate {
       return false;
     }
 
-    // Get document ID from request params
+    
     const itemId = request.params.id;
     if (!itemId) {
       throw new BadRequestException('Item ID is missing');
     }
 
-    // Fetch document
+    
     const doc = await this.docsModel.findById(itemId).exec();
     if (!doc) {
       throw new NotFoundException('Document not found');
     }
 
-    // Verify JWT and check ownership
+    
     try {
       const payload = await this.jwtService.verifyAsync(token, { secret: process.env.SECRET_KEY });
       const email = payload.email;
-      return email === doc.jwt_owner; // Allow access if user owns the document
+      return email === doc.jwt_owner; 
     } catch (error) {
       console.error('JWT verification failed:', error);
       return false;

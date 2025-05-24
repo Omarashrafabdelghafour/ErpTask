@@ -29,7 +29,7 @@ export class UserDto {
   @ApiProperty({
     description: 'The full name of the user.',
     example: 'John Doe',
-    required: false, // Align with @IsOptional
+    required: false, 
   })
   @IsOptional()
   @IsNotEmpty({ message: 'Name cannot be empty if provided' })

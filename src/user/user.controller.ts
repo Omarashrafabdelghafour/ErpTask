@@ -8,7 +8,7 @@ import { Role } from 'src/Decorators/roles.enum';
 import { RolesGuard } from 'src/Guards/roles.guard';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 
-@ApiTags('Users') // Group endpoints under 'Users' in Swagger UI
+@ApiTags('Users') 
 @Controller('user')
 @UseInterceptors(AnyFilesInterceptor())
 export class UserController {
@@ -37,7 +37,7 @@ export class UserController {
   @Get('all')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
-  @ApiBearerAuth() // Indicates this endpoint requires a Bearer token
+  @ApiBearerAuth() 
   @ApiOperation({ summary: 'Get all users (Admin only)' })
   @ApiResponse({ status: 200, description: 'List of all users' })
   @ApiResponse({ status: 403, description: 'Forbidden: Admin access required' })

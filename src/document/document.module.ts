@@ -8,7 +8,7 @@ import { Docs, DocsSchema } from './document.schema';
   imports: [
     MongooseModule.forFeature([{ name: Docs.name, schema: DocsSchema }]),
   ],
-  controllers: [DocumentController], // Include DocumentController
+  controllers: [DocumentController], 
   providers: [DocumentService],
 })
 export class DocumentModule {}
